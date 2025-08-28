@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>2acoupleV3 日本店鋪導覽</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+      background: linear-gradient(135deg, #dbe6ff 0%, #e9e9f3 50%, #ffe2e2 100%);
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 2.2rem 1rem 1rem;
+      background: rgba(255,255,255,0.2);
+      position: relative;
+    }
+    .logo-img {
+      height: 168px; /* 原本120px，放大40% */
+      margin-bottom: 16.8px; /* 原本12px，放大40% */
+      max-width: 100%;
+      width: auto;
+    }
+    @media (max-width: 600px) {
+      .logo-img {
+        height: 86px; /* 原本62px，放大40% */
+        margin-bottom: 16px;
+      }
+    }
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #396cc7;
+      margin-top: 0;
+      margin-bottom: 0.7em;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #6b9080;
+      margin: 2.3rem 0 1.2rem 0;
+      letter-spacing: 1px;
+      text-align: center;
+      padding-left: 0;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      padding: 0 1.5rem 0;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+    .card {
+      background: rgba(255,255,255,0.85);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #b7c6e6a0, 0 2px 8px #d6d8e6a8;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: 0.24s;
+      position: relative;
+      cursor: pointer;
+      border: 1px solid #e4e6f2;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 8px 32px #b7c6e6dd, 0 2px 8px #d6d8e6a8;
+      background: rgba(255,255,255,0.94);
+    }
+    .card .icon {
+      font-size: 2.3rem;
+      margin-bottom: 0.7rem;
+      color: #396cc7;
+      transition: 0.2s;
+      display: inline-block;
+      filter: drop-shadow(0 2px 6px #b1d0ff99);
+    }
+    .card:hover .icon {
+      color: #ff6f91;
+      transform: scale(1.2) rotate(-6deg);
+      filter: drop-shadow(0 6px 24px #ff9abf55);
+    }
+    .card .title {
+      font-size: 1.13rem;
+      font-weight: 600;
+      color: #283d6a;
+      margin-bottom: 0.4rem;
+      letter-spacing: 1px;
+    }
+    .card .subtitle {
+      font-size: 0.96rem;
+      color: #73799b;
+      margin-bottom: 0.3rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 99;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(42,64,90,0.33);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.1rem 1.3rem;
+      box-shadow: 0 8px 32px #b7c6e6c0;
+      text-align: center;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow: auto;
+      position: relative;
+      animation: modalShow 0.32s;
+    }
+    .modal-content img {
+      max-width: 420px;
+      width: 95vw;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #b1d0ff55;
+      margin-bottom: 1.2rem;
+    }
+    .modal-content .modal-title {
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: #283d6a;
+      margin-bottom: 0.5rem;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1.3rem;
+      font-size: 1.7rem;
+      color: #8fa3cf;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      z-index: 2;
+    }
+    .modal-close:hover {
+      color: #ff6f91;
+      transform: scale(1.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+    @keyframes modalShow {
+      from { transform: translateY(40px) scale(0.93); opacity: 0;}
+      to { transform: translateY(0) scale(1); opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="text-align:center; margin-top:36px;">
+      <img src="images/2acoupleV3.png" alt="2acoupleV3" class="logo-img">
+    </div>
+    <h2>日本優惠券總覽</h2>
+  </header>
+  <main>
+    <!-- 藥妝 -->
+    <div class="section-title">藥妝</div>
+    <div class="card-grid">
+      <a href="https://japanportal.donki-global.com/coupon/?ptcd=0076002003" target="_blank" class="card" style="text-decoration:none;">
+        <span class="icon">🦁</span>
+        <div class="title">唐吉訶德</div>
+        <div class="subtitle">點我領券</div>
+      </a>
+      <div class="card" onclick="showModal('Biccamera')">
+        <span class="icon">📷</span>
+        <div class="title">Biccamera</div>
+        <div class="subtitle">電器・家電</div>
+      </div>
+      <div class="card" onclick="showModal('松本清藥妝')">
+        <span class="icon">💊</span>
+        <div class="title">松本清藥妝</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+      <div class="card" onclick="showModal('COCOKARA FINE藥妝')">
+        <span class="icon">💊</span>
+        <div class="title">COCOKARA FINE藥妝</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+      <div class="card" onclick="showModal('Sundrug尚都樂客')">
+        <span class="icon">💊</span>
+        <div class="title">Sundrug尚都樂客</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+      <div class="card" onclick="showModal('SUGI杉藥局')">
+        <span class="icon">🌿</span>
+        <div class="title">SUGI杉藥局</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+      <div class="card" onclick="showModal('札幌藥妝')">
+        <span class="icon">🌸</span>
+        <div class="title">札幌藥妝</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+      <div class="card" onclick="showModal('鶴羽藥妝')">
+        <span class="icon">🐦</span>
+        <div class="title">鶴羽藥妝</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+      <div class="card" onclick="showModal('大賀藥局')">
+        <span class="icon">🧴</span>
+        <div class="title">大賀藥局</div>
+        <div class="subtitle">藥妝</div>
+      </div>
+    </div>
+    <!-- 百貨 -->
+    <div class="section-title">百貨</div>
+    <div class="card-grid">
+      <div class="card" onclick="showModal('大丸松坂屋')">
+        <span class="icon">🏬</span>
+        <div class="title">大丸松坂屋</div>
+        <div class="subtitle">百貨</div>
+      </div>
+      <div class="card" onclick="showModal('西武百貨')">
+        <span class="icon">🏬</span>
+        <div class="title">西武百貨</div>
+        <div class="subtitle">百貨</div>
+      </div>
+      <div class="card" onclick="showModal('京王百貨新宿店')">
+        <span class="icon">🏬</span>
+        <div class="title">京王百貨新宿店</div>
+        <div class="subtitle">百貨</div>
+      </div>
+      <div class="card" onclick="showModal('東武百貨池袋本店')">
+        <span class="icon">🏬</span>
+        <div class="title">東武百貨池袋本店</div>
+        <div class="subtitle">百貨</div>
+      </div>
+    </div>
+    <!-- 機場店家 -->
+    <div class="section-title">機場店家</div>
+    <div class="card-grid">
+      <div class="card" onclick="showModal('ANA成田機場 T1')">
+        <span class="icon">🛫</span>
+        <div class="title">ANA成田機場 T1</div>
+        <div class="subtitle">機場區域</div>
+      </div>
+      <div class="card" onclick="showModal('ANA羽田機場 T2')">
+        <span class="icon">🛫</span>
+        <div class="title">ANA羽田機場 T2</div>
+        <div class="subtitle">機場區域</div>
+      </div>
+      <div class="card" onclick="showModal('ANA羽田機場 T3')">
+        <span class="icon">🛫</span>
+        <div class="title">ANA羽田機場 T3</div>
+        <div class="subtitle">機場區域</div>
+      </div>
+      <div class="card" onclick="showModal('Fa-So-La成田机场免税店')">
+        <span class="icon">🛍️</span>
+        <div class="title">Fa-So-La成田機場免税店</div>
+        <div class="subtitle">免稅店</div>
+      </div>
+    </div>
+  </main>
+  <div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" id="modal-content">
+      <button class="modal-close" onclick="closeModal(event)">&times;</button>
+    </div>
+  </div>
+  <script>
+    function showModal(name) {
+      const src = "images/" + name + ".jpg";
+      const modal = document.getElementById('modal');
+      const modalContent = document.getElementById('modal-content');
+      const img = new Image();
+      img.src = src;
+      img.onload = function() {
+        modalContent.innerHTML = `
+          <button class="modal-close" onclick="closeModal(event)">&times;</button>
+          <img src="${src}" alt="${name}">
+          <div class="modal-title">${name}</div>
+        `;
+        modal.style.display = 'flex';
+      };
+      img.onerror = function() {
+        modalContent.innerHTML = `
+          <button class="modal-close" onclick="closeModal(event)">&times;</button>
+          <div style="font-size:1.1rem; color:#ff6f91; padding:2.7rem 0 1.2rem;">找不到圖片: ${name}.jpg</div>
+        `;
+        modal.style.display = 'flex';
+      };
+    }
+    function closeModal(event) {
+      if (event.target.classList.contains('modal') ||
+          event.target.classList.contains('modal-close')) {
+        document.getElementById('modal').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
