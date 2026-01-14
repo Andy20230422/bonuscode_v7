@@ -2,335 +2,418 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>2A夫妻 日本優惠券總覽 </title>
+  <title>2A夫妻 | 嚴選團購好物</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #5b4636; 
+      --btn-bg: #ffffff; /* 按鈕改白，增加乾淨感 */
+      --btn-active: #f1e4d3; 
+    }
+
     body {
       margin: 0;
-      font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
-      background: linear-gradient(135deg, #dbe6ff 0%, #e9e9f3 50%, #ffe2e2 100%);
+      font-family: 'Noto Sans TC', sans-serif;
+      /* 質感升級重點：使用極淺的暖米色漸層，取代純白背景 */
+      background: linear-gradient(to bottom, #fcfbf9 0%, #f3f0ea 100%);
       min-height: 100vh;
+      color: var(--primary-color);
+      scroll-behavior: smooth;
     }
+
+    /* Header: Logo 與 標題 橫向排列 */
     header {
-      text-align: center;
-      padding: 2.2rem 1rem 1rem;
-      background: rgba(255,255,255,0.2);
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #fff; /* Header 維持純白，與背景區隔 */
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* 增加一點點懸浮陰影 */
     }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .logo-img {
-      height: 168px; /* 原本120px，放大40% */
-      margin-bottom: 16.8px; /* 原本12px，放大40% */
-      max-width: 100%;
+      height: 48px;
       width: auto;
     }
-    @media (max-width: 600px) {
-      .logo-img {
-        height: 86px; /* 原本62px，放大40% */
-        margin-bottom: 16px;
-      }
-    }
-    h2 {
-      font-size: 2.2rem;
+
+    .site-info h1 {
+      font-size: 18px;
       font-weight: 700;
-      color: #396cc7;
-      margin-top: 0;
-      margin-bottom: 0.7em;
+      margin: 0;
+      color: #5b4636;
+      letter-spacing: 0.5px;
     }
+
+    .site-info span {
+      font-size: 11px;
+      color: #9c8e83; /* 文字顏色微調，更柔和 */
+      display: block;
+      margin-top: 2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    #searchBar {
+      border: 1px solid #e0e0e0;
+      background: #f9f9f9;
+      border-radius: 20px;
+      padding: 6px 14px;
+      margin-right: 10px;
+      display: none;
+      outline: none;
+      width: 130px;
+      font-size: 14px;
+      color: #5b4636;
+    }
+
+    .search-icon {
+      font-size: 19px;
+      cursor: pointer;
+      color: #8c7868;
+      transition: 0.2s;
+    }
+    .search-icon:hover { color: #5b4636; }
+
+    /* 導覽按鈕區域 */
+    .nav-scroll {
+      display: flex;
+      gap: 12px;
+      padding: 15px 20px;
+      overflow-x: auto;
+      /* 讓導覽列半透明，透出一點背景質感 */
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 73px; 
+      z-index: 99;
+    }
+
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    .nav-btn {
+      padding: 8px 20px;
+      border-radius: 20px;
+      background-color: #fff; /* 按鈕改為純白 */
+      color: #7a6b60;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid #eaeaea; /* 增加細邊框 */
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .nav-btn:hover {
+      border-color: #dcdcdc;
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background-color: var(--primary-color);
+      color: #fff;
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 10px rgba(91, 70, 54, 0.2);
+    }
+
+    /* 內容區域樣式 */
     .section-title {
       font-size: 1.3rem;
-      font-weight: 600;
+      font-weight: 700;
+      margin: 40px 20px 20px;
       color: #6b9080;
-      margin: 2.3rem 0 1.2rem 0;
+      text-align: center; /* 標題置中 */
       letter-spacing: 1px;
-      text-align: center;
-      padding-left: 0;
     }
+
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-      padding: 0 1.5rem 0;
-      max-width: 1050px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      padding: 0 20px 40px;
+      max-width: 1200px;
       margin: 0 auto;
     }
+
     .card {
-      background: rgba(255,255,255,0.85);
-      border-radius: 18px;
-      box-shadow: 0 4px 24px #b7c6e6a0, 0 2px 8px #d6d8e6a8;
-      padding: 1.4rem 1.2rem;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 15px;
       text-align: center;
-      transition: 0.24s;
-      position: relative;
+      /* 卡片陰影優化：更柔和的擴散，讓卡片更有質感 */
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.01);
+      border: 1px solid rgba(255,255,255,0.8);
       cursor: pointer;
-      border: 1px solid #e4e6f2;
-      overflow: hidden;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      top: 0;
     }
-    .card:hover {
-      transform: translateY(-6px) scale(1.04);
-      box-shadow: 0 8px 32px #b7c6e6dd, 0 2px 8px #d6d8e6a8;
-      background: rgba(255,255,255,0.94);
+
+    .card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 12px 30px rgba(91, 70, 54, 0.1); 
     }
-    .card .icon {
-      font-size: 2.3rem;
-      margin-bottom: 0.7rem;
-      color: #396cc7;
-      transition: 0.2s;
-      display: inline-block;
-      filter: drop-shadow(0 2px 6px #b1d0ff99);
-    }
-    .card:hover .icon {
-      color: #ff6f91;
-      transform: scale(1.2) rotate(-6deg);
-      filter: drop-shadow(0 6px 24px #ff9abf55);
-    }
-    .card .title {
-      font-size: 1.13rem;
-      font-weight: 600;
-      color: #283d6a;
-      margin-bottom: 0.4rem;
-      letter-spacing: 1px;
-    }
-    .card .subtitle {
-      font-size: 0.96rem;
-      color: #73799b;
-      margin-bottom: 0.3rem;
-    }
+
+    .card .icon { font-size: 28px; display: block; margin-bottom: 8px; }
+    .card .title { font-weight: 700; font-size: 15px; color: #4a3b32; letter-spacing: 0.5px; }
+    .card .subtitle { font-size: 12px; color: #999; margin-top: 4px; font-weight: 400; }
+
+    /* Modal */
     .modal {
-      display: none;
-      position: fixed;
-      z-index: 99;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(42,64,90,0.33);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
+      display: none; position: fixed; z-index: 1001;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(91, 70, 54, 0.25); /* 深褐色透明遮罩 */
+      backdrop-filter: blur(8px); /* 背景模糊效果 */
+      justify-content: center; align-items: center;
       animation: fadeIn 0.3s;
     }
     .modal-content {
-      background: #fff;
-      border-radius: 16px;
-      padding: 2rem 1.1rem 1.3rem;
-      box-shadow: 0 8px 32px #b7c6e6c0;
-      text-align: center;
-      max-width: 90vw;
-      max-height: 80vh;
-      overflow: auto;
-      position: relative;
-      animation: modalShow 0.32s;
+      background: #fff; border-radius: 20px; padding: 25px;
+      max-width: 85%; max-height: 85vh; text-align: center; 
+      position: relative; overflow: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      animation: slideUp 0.3s;
     }
-    .modal-content img {
-      max-width: 420px;
-      width: 95vw;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px #b1d0ff55;
-      margin-bottom: 1.2rem;
+    .modal-content img { max-width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .modal-close { 
+      position: absolute; top: 15px; right: 20px; 
+      font-size: 28px; cursor: pointer; border: none; background: none; color: #ccc; transition: 0.2s;
     }
-    .modal-content .modal-title {
-      font-size: 1.22rem;
-      font-weight: 600;
-      color: #283d6a;
-      margin-bottom: 0.5rem;
-    }
-    .modal-close {
-      position: absolute;
-      top: 1rem; right: 1.3rem;
-      font-size: 1.7rem;
-      color: #8fa3cf;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: 0.2s;
-      z-index: 2;
-    }
-    .modal-close:hover {
-      color: #ff6f91;
-      transform: scale(1.2);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0 }
-      to { opacity: 1 }
-    }
-    @keyframes modalShow {
-      from { transform: translateY(40px) scale(0.93); opacity: 0;}
-      to { transform: translateY(0) scale(1); opacity: 1;}
-    }
+    .modal-close:hover { color: #5b4636; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   </style>
 </head>
 <body>
+
   <header>
-    <div style="text-align:center; margin-top:36px;">
-      <img src="images/2acoupleV3.png" alt="2acoupleV3" class="logo-img">
+    <div class="header-left">
+      <img src="images/2acoupleV3.png" alt="2A夫妻" class="logo-img">
+      <div class="site-info">
+        <h1>日本優惠券總覽</h1>
+      </div>
     </div>
-    <h2>日本優惠券總覽</h2>
+    <div class="header-right">
+      <input type="text" id="searchBar" placeholder="搜尋名稱..." onkeyup="searchCards()">
+      <span class="search-icon" onclick="toggleSearch()">🔍</span>
+    </div>
   </header>
+
+  <nav class="nav-scroll">
+    <button class="nav-btn" onclick="scrollToSection('cosmetic', this)">藥妝</button>
+    <button class="nav-btn" onclick="scrollToSection('department', this)">百貨</button>
+    <button class="nav-btn" onclick="scrollToSection('airport', this)">機場店家</button>
+    <button class="nav-btn" onclick="scrollToSection('other', this)">玩具/娛樂/其他</button>
+  </nav>
+
   <main>
-    <!-- 藥妝 -->
-    <div class="section-title">藥妝</div>
-    <div class="card-grid">
-      <a href="https://japanportal.donki-global.com/coupon/?ptcd=0076006003" target="_blank" class="card" style="text-decoration:none;">
-        <span class="icon">🦁</span>
-        <div class="title">唐吉訶德</div>
-        <div class="subtitle">點我領券</div>
-      </a>
-      <div class="card" onclick="showModal('Biccamera')">
-        <span class="icon">📷</span>
-        <div class="title">Biccamera</div>
-        <div class="subtitle">電器・家電</div>
-      </div>
-	  <div class="card" onclick="showModal('愛店王')">
-        <span class="icon">📷</span>
-        <div class="title">愛店王</div>
-        <div class="subtitle">電器・家電</div>
-      </div>
-      <div class="card" onclick="showModal('松本清藥妝')">
-        <span class="icon">💊</span>
-        <div class="title">松本清藥妝</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('COCOKARA FINE藥妝')">
-        <span class="icon">💊</span>
-        <div class="title">COCOKARA FINE藥妝</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('Sundrug尚都樂客')">
-        <span class="icon">💊</span>
-        <div class="title">Sundrug尚都樂客</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('SUGI杉藥局')">
-        <span class="icon">🌿</span>
-        <div class="title">SUGI杉藥局</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('札幌藥妝')">
-        <span class="icon">🌸</span>
-        <div class="title">札幌藥妝</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('鶴羽藥妝')">
-        <span class="icon">🐦</span>
-        <div class="title">鶴羽藥妝</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('大賀藥局')">
-        <span class="icon">🧴</span>
-        <div class="title">大賀藥局</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('Laox Couponv1')">
-        <span class="icon">🧴</span>
-        <div class="title">LAOX樂購仕</div>
-        <div class="subtitle">藥妝</div>
-      </div>
-      <div class="card" onclick="showModal('COSMOS科摩思v1')">
-        <span class="icon">🧴</span>
-        <div class="title">COSMOS科摩思</div>
-        <div class="subtitle">藥妝</div>
-      </div>    
-    </div>
-    <!-- 百貨 -->
-    <div class="section-title">百貨</div>
-    <div class="card-grid">
-      <div class="card" onclick="showModal('大丸百貨_0905')">
-        <span class="icon">🏬</span>
-        <div class="title">大丸松坂屋</div>
-        <div class="subtitle">百貨</div>
-      </div>
-      <div class="card" onclick="showModal('西武百貨v1')">
-        <span class="icon">🏬</span>
-        <div class="title">西武百貨</div>
-        <div class="subtitle">百貨</div>
-      </div>
-      <div class="card" onclick="showModal('京王百貨新宿店')">
-        <span class="icon">🏬</span>
-        <div class="title">京王百貨新宿店</div>
-        <div class="subtitle">百貨</div>
-      </div>
-      <div class="card" onclick="showModal('東武百貨池袋本店2')">
-        <span class="icon">🏬</span>
-        <div class="title">東武百貨池袋本店</div>
-        <div class="subtitle">百貨</div>
-      </div>
-	  <div class="card" onclick="showModal('名古屋名鐵百貨')">
-        <span class="icon">🏬</span>
-        <div class="title">名古屋名鐵百貨</div>
-        <div class="subtitle">百貨</div>
+    <div id="cosmetic">
+      <div class="section-title">藥妝</div>
+      <div class="card-grid">
+        <a href="https://japanportal.donki-global.com/coupon/?ptcd=0076006003" target="_blank" class="card">
+          <span class="icon">🦁</span>
+          <div class="title">唐吉訶德</div>
+          <div class="subtitle">點我領券</div>
+        </a>
+        <div class="card" onclick="showModal('Biccamera')">
+          <span class="icon">📷</span>
+          <div class="title">Biccamera</div>
+          <div class="subtitle">電器・家電</div>
+        </div>
+        <div class="card" onclick="showModal('愛店王')">
+          <span class="icon">📷</span>
+          <div class="title">愛店王</div>
+          <div class="subtitle">電器・家電</div>
+        </div>
+        <div class="card" onclick="showModal('松本清藥妝')">
+          <span class="icon">💊</span>
+          <div class="title">松本清藥妝</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('COCOKARA FINE藥妝')">
+          <span class="icon">💊</span>
+          <div class="title">COCOKARA FINE藥妝</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('Sundrug尚都樂客')">
+          <span class="icon">💊</span>
+          <div class="title">Sundrug尚都樂客</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('SUGI杉藥局')">
+          <span class="icon">🌿</span>
+          <div class="title">SUGI杉藥局</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('札幌藥妝')">
+          <span class="icon">🌸</span>
+          <div class="title">札幌藥妝</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('鶴羽藥妝')">
+          <span class="icon">🐦</span>
+          <div class="title">鶴羽藥妝</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('大賀藥局')">
+          <span class="icon">🧴</span>
+          <div class="title">大賀藥局</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('Laox Couponv1')">
+          <span class="icon">🧴</span>
+          <div class="title">LAOX樂購仕</div>
+          <div class="subtitle">藥妝</div>
+        </div>
+        <div class="card" onclick="showModal('COSMOS科摩思v1')">
+          <span class="icon">🧴</span>
+          <div class="title">COSMOS科摩思</div>
+          <div class="subtitle">藥妝</div>
+        </div>
       </div>
     </div>
-    <!-- 機場店家 -->
-    <div class="section-title">機場店家</div>
-    <div class="card-grid">
-      <div class="card" onclick="showModal('成田機場免稅店 T1_0911')">
-        <span class="icon">🛫</span>
-        <div class="title">ANA成田機場 T1</div>
-        <div class="subtitle">機場區域</div>
-      </div>
-      <div class="card" onclick="showModal('羽田機場免稅店 T2_0911')">
-        <span class="icon">🛫</span>
-        <div class="title">ANA羽田機場 T2</div>
-        <div class="subtitle">機場區域</div>
-      </div>
-      <div class="card" onclick="showModal('羽田機場免稅店 T3_0911')">
-        <span class="icon">🛫</span>
-        <div class="title">ANA羽田機場 T3</div>
-        <div class="subtitle">機場區域</div>
-      </div>
-      <div class="card" onclick="showModal('Fa-So-La成田機場免税店')">
-        <span class="icon">🛍️</span>
-        <div class="title">Fa-So-La成田機場免税店</div>
-        <div class="subtitle">免稅店</div>
+
+    <div id="department">
+      <div class="section-title">百貨</div>
+      <div class="card-grid">
+        <div class="card" onclick="showModal('大丸百貨_0905')">
+          <span class="icon">🏬</span>
+          <div class="title">大丸松坂屋</div>
+          <div class="subtitle">百貨</div>
+        </div>
+        <div class="card" onclick="showModal('西武百貨v1')">
+          <span class="icon">🏬</span>
+          <div class="title">西武百貨</div>
+          <div class="subtitle">百貨</div>
+        </div>
+        <div class="card" onclick="showModal('京王百貨新宿店')">
+          <span class="icon">🏬</span>
+          <div class="title">京王百貨新宿店</div>
+          <div class="subtitle">百貨</div>
+        </div>
+        <div class="card" onclick="showModal('東武百貨池袋本店2')">
+          <span class="icon">🏬</span>
+          <div class="title">東武百貨池袋本店</div>
+          <div class="subtitle">百貨</div>
+        </div>
+        <div class="card" onclick="showModal('名古屋名鐵百貨')">
+          <span class="icon">🏬</span>
+          <div class="title">名古屋名鐵百貨</div>
+          <div class="subtitle">百貨</div>
+        </div>
       </div>
     </div>
-    <!-- 玩具/娛樂/其他 -->
-    <div class="section-title">玩具/娛樂/其他</div>
-    <div class="card-grid">
-      <div class="card" onclick="showModal('JUNGLE 密林玩具')">
-        <span class="icon">🦖</span>
-        <div class="title">JUNGLE 密林玩具</div>
-        <div class="subtitle">玩具・模型優惠券</div>
+
+    <div id="airport">
+      <div class="section-title">機場店家</div>
+      <div class="card-grid">
+        <div class="card" onclick="showModal('成田機場免稅店 T1_0911')">
+          <span class="icon">🛫</span>
+          <div class="title">ANA成田機場 T1</div>
+          <div class="subtitle">機場區域</div>
+        </div>
+        <div class="card" onclick="showModal('羽田機場免稅店 T2_0911')">
+          <span class="icon">🛫</span>
+          <div class="title">ANA羽田機場 T2</div>
+          <div class="subtitle">機場區域</div>
+        </div>
+        <div class="card" onclick="showModal('羽田機場免稅店 T3_0911')">
+          <span class="icon">🛫</span>
+          <div class="title">ANA羽田機場 T3</div>
+          <div class="subtitle">機場區域</div>
+        </div>
+        <div class="card" onclick="showModal('Fa-So-La成田機場免税店')">
+          <span class="icon">🛍️</span>
+          <div class="title">Fa-So-La成田機場免税店</div>
+          <div class="subtitle">免稅店</div>
+        </div>
       </div>
-      <div class="card" onclick="showModal('snow peak')">
-        <span class="icon">⛺️</span>
-        <div class="title">Snow Peak</div>
-        <div class="subtitle">戶外用品</div>
-      </div>      
+    </div>
+
+    <div id="other">
+      <div class="section-title">玩具/娛樂/其他</div>
+      <div class="card-grid">
+        <div class="card" onclick="showModal('JUNGLE 密林玩具')">
+          <span class="icon">🦖</span>
+          <div class="title">JUNGLE 密林玩具</div>
+          <div class="subtitle">玩具・模型</div>
+        </div>
+        <div class="card" onclick="showModal('snow peak')">
+          <span class="icon">⛺️</span>
+          <div class="title">Snow Peak</div>
+          <div class="subtitle">戶外用品</div>
+        </div>
+      </div>
     </div>
   </main>
+
   <div id="modal" class="modal" onclick="closeModal(event)">
     <div class="modal-content" id="modal-content">
       <button class="modal-close" onclick="closeModal(event)">&times;</button>
     </div>
   </div>
+
   <script>
+    function scrollToSection(id, btn) {
+      const element = document.getElementById(id);
+      const offset = 130; 
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const offsetPosition = (elementRect - bodyRect) - offset;
+
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function toggleSearch() {
+      const bar = document.getElementById('searchBar');
+      bar.style.display = (bar.style.display === 'inline-block') ? 'none' : 'inline-block';
+      if(bar.style.display === 'inline-block') bar.focus();
+    }
+
+    function searchCards() {
+      let input = document.getElementById('searchBar').value.toLowerCase();
+      let cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        let title = card.querySelector('.title').innerText.toLowerCase();
+        card.style.display = title.includes(input) ? "" : "none";
+      });
+    }
+
     function showModal(name) {
-      const src = "images/" + name + ".jpg";
       const modal = document.getElementById('modal');
       const modalContent = document.getElementById('modal-content');
-      const img = new Image();
-      img.src = src;
-      img.onload = function() {
-        modalContent.innerHTML = `
-          <button class="modal-close" onclick="closeModal(event)">&times;</button>
-          <img src="${src}" alt="${name}">
-          <div class="modal-title">${name}</div>
-        `;
-        modal.style.display = 'flex';
-      };
-      img.onerror = function() {
-        modalContent.innerHTML = `
-          <button class="modal-close" onclick="closeModal(event)">&times;</button>
-          <div style="font-size:1.1rem; color:#ff6f91; padding:2.7rem 0 1.2rem;">找不到圖片: ${name}.jpg</div>
-        `;
-        modal.style.display = 'flex';
-      };
+      const src = "images/" + name + ".jpg";
+      modalContent.innerHTML = `
+        <button class="modal-close" onclick="closeModal(event)">&times;</button>
+        <img src="${src}" alt="${name}" onerror="this.src='https://via.placeholder.com/400x300?text=圖片載入中/錯誤'">
+        <div style="margin-top:15px; font-weight:700; font-size:1.1rem; color:#5b4636;">${name}</div>
+      `;
+      modal.style.display = 'flex';
     }
+
     function closeModal(event) {
-      if (event.target.classList.contains('modal') ||
-          event.target.classList.contains('modal-close')) {
+      if (event.target.classList.contains('modal') || event.target.classList.contains('modal-close')) {
         document.getElementById('modal').style.display = 'none';
       }
     }
