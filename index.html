@@ -69,18 +69,6 @@
       align-items: center;
     }
 
-    #searchBar {
-      border: 1px solid #e0e0e0;
-      background: #f9f9f9;
-      border-radius: 20px;
-      padding: 6px 14px;
-      margin-right: 10px;
-      display: none;
-      outline: none;
-      width: 130px;
-      font-size: 14px;
-      color: #5b4636;
-    }
 
     .search-icon {
       font-size: 19px;
@@ -202,6 +190,110 @@
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+	
+	/* 回到團購按鈕 */
+.back-btn {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #5b4636;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.2s;
+}
+.back-btn:hover {
+  background: #f3f0ea;
+}
+
+/* 底部搜尋面板 */
+.search-panel {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  display: none;
+  z-index: 2000;
+}
+
+
+
+.search-panel-content input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.close-search {
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #5b4636;
+  cursor: pointer;
+}
+
+/* 手機 */
+@media (max-width: 600px) {
+  .search-panel-content {
+    margin: 70px 14px 0;
+  }
+}
+
+/* 搜尋小視窗：顯示在放大鏡下方 */
+.search-panel-content {
+  position: fixed;
+  top: 72px;              /* header 高度下面 */
+  right: 20px;            /* 對齊右側放大鏡 */
+  width: 360px;
+  background: #fff;
+  padding: 14px;
+  display: flex;
+  gap: 10px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  animation: fadeIn 0.2s ease;
+}
+
+/* 手機版 */
+@media (max-width: 600px) {
+  .search-panel-content {
+    left: 14px;
+    right: 14px;
+    width: auto;
+    top: 66px;
+  }
+}
+
+/* 放大鏡 icon 按鈕 */
+.icon-btn {
+  border: none;
+  background: none;
+  padding: 6px;
+  margin-left: 6px;
+  cursor: pointer;
+  color: #8c7868; /* 預設顏色 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: #5b4636;
+  background-color: rgba(91, 70, 54, 0.08);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn svg {
+  display: block;
+}
+
   </style>
 </head>
 <body>
@@ -213,10 +305,42 @@
         <h1>日本優惠券總覽</h1>
       </div>
     </div>
-    <div class="header-right">
-      <input type="text" id="searchBar" placeholder="搜尋名稱..." onkeyup="searchCards()">
-      <span class="search-icon" onclick="toggleSearch()">🔍</span>
-    </div>
+ <div class="header-right">
+  <button class="back-btn" onclick="goToGroupBuy()">回到團購</button>
+<button
+  class="icon-btn"
+  id="searchToggle"
+  aria-label="搜尋品牌名稱"
+  onclick="openSearch()"
+>
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M21 21l-4.35-4.35"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle
+      cx="11"
+      cy="11"
+      r="6"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</button>
+
+</div>
   </header>
 
   <nav class="nav-scroll">
@@ -365,7 +489,19 @@
         </div>
       </div>
     </div>
+	
   </main>
+<div class="search-panel" id="searchPanel" onclick="closeSearch(event)">
+  <div class="search-panel-content" onclick="event.stopPropagation()">
+    <input
+      type="text"
+      id="searchBar"
+      placeholder="搜尋品牌名稱..."
+      onkeyup="searchCards()"
+    />
+    <button class="close-search" onclick="closeSearch()">取消</button>
+  </div>
+</div>
 
   <div id="modal" class="modal" onclick="closeModal(event)">
     <div class="modal-content" id="modal-content">
@@ -386,20 +522,34 @@
       btn.classList.add('active');
     }
 
-    function toggleSearch() {
-      const bar = document.getElementById('searchBar');
-      bar.style.display = (bar.style.display === 'inline-block') ? 'none' : 'inline-block';
-      if(bar.style.display === 'inline-block') bar.focus();
-    }
 
-    function searchCards() {
-      let input = document.getElementById('searchBar').value.toLowerCase();
-      let cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        let title = card.querySelector('.title').innerText.toLowerCase();
-        card.style.display = title.includes(input) ? "" : "none";
-      });
+function searchCards() {
+  const input = document.getElementById('searchBar').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let firstVisibleCard = null;
+
+  cards.forEach(card => {
+    const title = card.querySelector('.title').innerText.toLowerCase();
+    const match = title.includes(input);
+    card.style.display = match ? "" : "none";
+
+    if (match && !firstVisibleCard) {
+      firstVisibleCard = card;
     }
+  });
+
+  // 🔽 自動捲到第一筆結果
+  if (firstVisibleCard) {
+    const yOffset = -150; // 避開 header
+    const y =
+      firstVisibleCard.getBoundingClientRect().top +
+      window.pageYOffset +
+      yOffset;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
 
     function showModal(name) {
       const modal = document.getElementById('modal');
@@ -418,6 +568,24 @@
         document.getElementById('modal').style.display = 'none';
       }
     }
+	function goToGroupBuy() {
+  window.location.href = "https://2acouple.com/";
+}
+
+function openSearch() {
+  document.getElementById('searchPanel').style.display = 'block';
+  setTimeout(() => document.getElementById('searchBar').focus(), 100);
+}
+
+function closeSearch(e) {
+  if (!e || e.target.id === 'searchPanel') {
+    document.getElementById('searchPanel').style.display = 'none';
+    document.getElementById('searchBar').value = '';
+    searchCards();
+  }
+}
+
+
   </script>
 </body>
 </html>
