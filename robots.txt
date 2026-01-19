@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jpcoupon.2acouple.com/sitemap.xml
