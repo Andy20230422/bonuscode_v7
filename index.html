@@ -109,12 +109,14 @@ header {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, 260px);
   gap: 16px;
   padding: 0 20px 40px;
   max-width: 1200px;
   margin: 0 auto;
+  justify-content: center;
 }
+
 
 .card {
   background: #fff;
@@ -162,6 +164,17 @@ header {
 .icon-btn svg { display: block; }
 
 .seo-text { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* 🔍 搜尋時，不要擋住底下商品點擊 */
+.search-panel {
+  pointer-events: none;
+}
+
+.search-panel-content {
+  pointer-events: auto;
+}
+
+
 </style>
 </head>
 <body>
@@ -348,7 +361,8 @@ header {
     </div>
 	
   </main>
-<div class="search-panel" id="searchPanel" onclick="closeSearch(event)">
+<div class="search-panel" id="searchPanel">
+
   <div class="search-panel-content" onclick="event.stopPropagation()">
     <input
       type="text"
@@ -380,32 +394,21 @@ header {
     }
 
 
+let hasScrolledToResult = false;
+
 function searchCards() {
   const input = document.getElementById('searchBar').value.toLowerCase();
   const cards = document.querySelectorAll('.card');
-  let firstVisibleCard = null;
 
   cards.forEach(card => {
     const title = card.querySelector('.title').innerText.toLowerCase();
-    const match = title.includes(input);
-    card.style.display = match ? "" : "none";
-
-    if (match && !firstVisibleCard) {
-      firstVisibleCard = card;
-    }
+    card.style.display = title.includes(input) ? '' : 'none';
   });
 
-  // 🔽 自動捲到第一筆結果
-  if (firstVisibleCard) {
-    const yOffset = -150; // 避開 header
-    const y =
-      firstVisibleCard.getBoundingClientRect().top +
-      window.pageYOffset +
-      yOffset;
-
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
+  if (!input) hasScrolledToResult = false;
 }
+
+
 
 
     function showModal(name) {
@@ -435,13 +438,19 @@ function openSearch() {
   setTimeout(() => document.getElementById('searchBar').focus(), 100);
 }
 
-function closeSearch(e) {
-  if (!e || e.target.id === 'searchPanel') {
-    document.getElementById('searchPanel').style.display = 'none';
-    document.getElementById('searchBar').value = '';
-    searchCards();
-  }
+function closeSearch() {
+  document.getElementById('searchPanel').style.display = 'none';
+  document.getElementById('searchBar').value = '';
+  resetSearch();
 }
+
+function resetSearch() {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.style.display = '';
+  });
+}
+
 
 
   </script>
